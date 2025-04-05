@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using RGB.NET.Core;
+using SharpVialRGB;
 
 namespace Artemis.Plugins.Devices.VialRGB;
 
@@ -46,12 +47,17 @@ public class VialRgbDeviceProvider : AbstractRGBDeviceProvider
 
     protected override IEnumerable<IRGBDevice> LoadDevices()
     {
-        var devices = SharpVialRGB.VialRGB.GetAllDevices();
+        VialDevice[]? devices = null;
+        
+        devices = SharpVialRGB.VialRGB.GetAllDevices();
+
+        if (devices == null)
+            yield break;
 
         foreach (var device in devices)
         {
             VialRGBUpdateQueue updateQueue = new VialRGBUpdateQueue(GetUpdateTrigger(), device);
-            
+
             device.Connect();
             device.EnableDirectRgb();
             
@@ -64,13 +70,11 @@ public class VialRgbDeviceProvider : AbstractRGBDeviceProvider
 
     protected override IDeviceUpdateTrigger CreateUpdateTrigger(int id, double updateRateHardLimit)
     {
-        return new DeviceUpdateTrigger(0.1);
+        return new DeviceUpdateTrigger(1.0/30.0);
     }
 
     protected override void Dispose(bool disposing)
     {
-        base.Dispose(disposing);
-
         foreach (var device in _devices)
         {
             try { device.Dispose(); }
@@ -78,8 +82,9 @@ public class VialRgbDeviceProvider : AbstractRGBDeviceProvider
         }
         
         _devices.Clear();
-        
         _instance = null;
+        
+        base.Dispose(disposing);
     }
 
     #endregion
