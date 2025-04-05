@@ -13,8 +13,7 @@
 
     <ItemGroup>
       <Reference Include="SharpVialRGB">
-        <HintPath>..\..\..\SharpVialRGB\bin\Debug\net8.0\SharpVialRGB.dll</HintPath>
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        <HintPath>..\..\Libs\SharpVialRGB.dll</HintPath>
       </Reference>
     </ItemGroup>
 
