@@ -12,9 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="SharpVialRGB">
-        <HintPath>..\Libs\SharpVialRGB\bin\Debug\net8.0\SharpVialRGB.dll</HintPath>
-      </Reference>
+      <ProjectReference Include="..\Libs\SharpVialRGB\SharpVialRGB.csproj" />
     </ItemGroup>
 
 </Project>
