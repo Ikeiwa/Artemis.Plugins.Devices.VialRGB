@@ -1,7 +1,6 @@
 using Artemis.Core;
-using Artemis.UI.Shared;
 
-namespace Artemis.Plugins.VialRGB;
+namespace Artemis.Plugins.Devices.VialRGB;
 
 public class Bootstrapper : PluginBootstrapper
 {
