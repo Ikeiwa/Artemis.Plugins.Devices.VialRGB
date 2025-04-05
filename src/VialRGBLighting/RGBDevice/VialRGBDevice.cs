@@ -30,7 +30,7 @@ public class VialRGBDevice : AbstractRGBDevice<VialRGBDeviceInfo>
                 startCustom++;
             }
             
-            AddLed(id, new Point(led.X, led.Y), ledSize, led);
+            AddLed(id, new Point(led.X*2, led.Y*2), ledSize, led);
         }
     }
 
